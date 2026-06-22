@@ -6,8 +6,9 @@ def analyze_risk(data):
     mcp_client.send("risk_agent", data)
     mcp_client.send("credit_score_service", data)
 
-    dti_ratio = (data["liabilities"] + data["loan_amount"]) / max(data["income"], 1)
-
+    #dti_ratio = (data["liabilities"] + data["loan_amount"]) / max(data["income"], 1)
+    dti_ratio = data["liabilities"] / max(data["income"], 1)
+    
     if data["credit_score"] < 600:
         credit_risk = "High"
     elif data["credit_score"] < 700:
